@@ -1,4 +1,6 @@
-import { defineField, defineType } from 'sanity'
+// schemas/customer.js
+
+import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'customer',
@@ -20,38 +22,15 @@ export default defineType({
       title: 'Slug (for internal use. just click generate)',
       type: 'slug',
       options: {
-        source: doc => `${doc.firstName}-${doc.lastName}`,
+        source: (doc) => `${doc.firstName}-${doc.lastName}`,
         maxLength: 96,
       },
     }),
     defineField({
-      name: 'product',
-      title: 'Product',
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'name',
-          title: 'Name',
-          type: 'string',
-        }),
-        defineField({
-          name: 'description',
-          title: 'Description',
-          type: 'text',
-        }),
-        defineField({
-          name: 'price',
-          title: 'Price',
-          type: 'number',
-          validation: Rule => Rule.required().positive(),
-        }),
-        defineField({
-          name: 'image',
-          title: 'Image',
-          type: 'image',
-          options: { hotspot: true },
-        }),
-      ],
+      name: 'products',
+      title: 'Products',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'product' } }],
     }),
   ],
   fieldsets: [
@@ -65,4 +44,4 @@ export default defineType({
       },
     },
   ],
-})
+});
