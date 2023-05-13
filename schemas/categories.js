@@ -1,3 +1,4 @@
+// schemas/category.js
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
@@ -12,12 +13,18 @@ export default defineType({
     }),
     defineField({
       name: 'slug',
-      title: 'Slug (for internal use. just click generate)',
+      title: 'Slug',
       type: 'slug',
       options: {
         source: 'name',
         maxLength: 96,
       },
+    }),
+    defineField({
+      name: 'products',
+      title: 'Products',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'product' } }],
     }),
   ],
 })
