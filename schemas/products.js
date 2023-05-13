@@ -37,10 +37,10 @@ export default defineType({
       options: { hotspot: true },
     }),
     defineField({
-      name: 'categories',
-      title: 'Categories',
-      type: 'array',
-      of: [{ type: 'string' }],
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: [{ type: 'category' }],
     }),
   ],
   fieldsets: [
