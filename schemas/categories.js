@@ -1,4 +1,3 @@
-// schemas/categories.js
 import { defineField, defineType } from 'sanity'
 
 export default defineType({
@@ -18,6 +17,14 @@ export default defineType({
       options: {
         source: 'name',
         maxLength: 96,
+      },
+    }),
+    defineField({
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      options: {
+        hotspot: true,
       },
     }),
     defineField({
